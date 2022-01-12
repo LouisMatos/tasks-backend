@@ -39,8 +39,10 @@ pipeline{
        }
        stage('API Test') {
           steps {
-              git 'https://github.com/LouisMatos/task-api-test.git'
-              sh 'mvn test'
+              dir('api-test'){
+                   git 'https://github.com/LouisMatos/task-api-test.git'
+              		sh 'mvn test' 
+              }
           }
        }
     }
