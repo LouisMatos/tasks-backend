@@ -1,14 +1,12 @@
 pipeline{
     agent any
     tools { 
-      maven 'MAVEN_Local'
+      maven 'Maven_Local'
     }
     stages {
         stage('Build Backend') {
            steps {
-               withMaven(maven: 'mvn') {
-               	  sh 'mvn clean package -DskipTest=true'
-               }
+             sh 'mvn clean package -DskipTest=true'
            }
         }
     }
