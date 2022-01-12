@@ -37,6 +37,12 @@ pipeline{
               deploy adapters: [tomcat9(credentialsId: 'Teste-1', path: '', url: 'http://172.26.240.1:8001/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
           }
        }
+       stage('API Test') {
+          steps {
+              git 'https://github.com/LouisMatos/task-api-test.git'
+              sh 'mvn test'
+          }
+       }
     }
 }
 
