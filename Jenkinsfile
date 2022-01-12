@@ -41,10 +41,19 @@ pipeline{
           steps {
               dir('api-test'){
                    git 'https://github.com/LouisMatos/task-api-test.git'
-              		sh 'mvn test' 
+              	   sh 'mvn test' 
               }
           }
        }
+       stage('Deploy Frontend') {
+          steps {
+          		dir('frontend'){
+          		    git 'https://github.com/LouisMatos/tasks-frontend.git'
+          		    sh 'mvn clean package -DskipTests=true'
+              		deploy adapters: [tomcat9(credentialsId: 'Teste-1', path: '', url: 'http://172.29.32.1:8001/')], contextPath: 'tasks', war: 'target/tasks.war'
+          	}
+       	  }
+    	}
     }
 }
 
