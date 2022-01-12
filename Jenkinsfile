@@ -37,7 +37,7 @@ pipeline{
               deploy adapters: [tomcat9(credentialsId: 'Teste-1', path: '', url: 'http://172.29.32.1:8001/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
           }
        }
-       stage('API Test') {172.29.32.1
+       stage('API Test') {
           steps {
               dir('api-test'){
                    git 'https://github.com/LouisMatos/task-api-test.git'
