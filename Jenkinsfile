@@ -54,6 +54,14 @@ pipeline{
           	}
        	  }
     	}
+    	stage('Functional Test') {
+          steps {
+              dir('functional-test'){
+                   git 'https://github.com/LouisMatos/tasks-functional-tests.git'
+              	   sh 'mvn test' 
+              }
+          }
+       }
     }
 }
 
