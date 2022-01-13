@@ -8,7 +8,6 @@ services:
 #      - prod_mysql_data:/var/lib/mysql/data
     networks:
       - prod_net_back
-    command: --innodb-flush-method=O_DSYNC --innodb-use-native-aio=0 --log_bin=ON
     environment:
       - MYSQL_ROOT_PASSWORD=MySql2019!
       - MYSQL_DATABASE=testedb
