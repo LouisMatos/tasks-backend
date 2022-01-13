@@ -3,14 +3,13 @@ services:
   db:
     image: mysql:5.7
     container_name: mysql-prod
-#    volumes:
-#      - prod_mysql:/var/lib/mysql
-#      - prod_mysql_data:/var/lib/mysql/data
+    volumes:
+      - prod_mysql:/var/lib/mysql
     networks:
       - prod_net_back
     environment:
       - MYSQL_ROOT_PASSWORD=MySql2019!
-      - MYSQL_DATABASE=db
+      - MYSQL_DATABASE=testedb
       - MYSQL_USER=luismatos
       - MYSQL_PASSWORD=teste123456
 
@@ -30,8 +29,8 @@ services:
     environment:
       - DATABASE_HOST=db
       - DATABASE_PORT=3306
-      - DATABASE_USER=root
-      - DATABASE_PASSWD=MySql2019!
+      - DATABASE_USER=luismatos
+      - DATABASE_PASSWD=teste123456
       #- DATABASE_UPDATE=none
     depends_on:
       - db
