@@ -6,12 +6,12 @@ pipeline{
     stages {
         stage('Build Backend') {
            steps {
-             sh 'mvn clean package -DskipTests=true'
+             bat 'mvn clean package -DskipTests=true'
            }
         }
         stage('Unit Tests') {
           steps {
-            sh 'mvn test'
+            bat 'mvn test'
           }
        }
        stage('Sonar Analysis') {
@@ -20,7 +20,7 @@ pipeline{
   	       }
           steps {
           	  withSonarQubeEnv('SONAR_LOCAL'){
-          	   sh "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBackend -Dsonar.host.url=http://172.29.32.1:9000 -Dsonar.login=a82acaa41c272496a6011efad6f4c2b7f59fb18f -Dsonar.java.binaries=target -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**,**/model/**,**Application.java"   
+          	   bat "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBackend -Dsonar.host.url=http://172.29.32.1:9000 -Dsonar.login=a82acaa41c272496a6011efad6f4c2b7f59fb18f -Dsonar.java.binaries=target -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**,**/model/**,**Application.java"   
           	  }
           }
        }
@@ -41,7 +41,7 @@ pipeline{
           steps {
               dir('api-test'){
                    git 'https://github.com/LouisMatos/task-api-test.git'
-              	   sh 'mvn test' 
+              	   bat 'mvn test' 
               }
           }
        }
@@ -49,7 +49,7 @@ pipeline{
           steps {
           		dir('frontend'){
           		    git 'https://github.com/LouisMatos/tasks-frontend.git'
-          		    sh 'mvn clean package -DskipTests=true'
+          		    bat 'mvn clean package -DskipTests=true'
               		deploy adapters: [tomcat9(credentialsId: 'Teste-1', path: '', url: 'http://172.29.32.1:8001/')], contextPath: 'tasks', war: 'target/tasks.war'
           	}
        	  }
@@ -58,14 +58,14 @@ pipeline{
           steps {
               dir('functional-test'){
                    git 'https://github.com/LouisMatos/tasks-functional-tests.git'
-              	   sh 'mvn test' 
+              	   bat 'mvn test' 
               }
           }
        }
        stage('Deploy Prod') {
           steps {
-              sh 'docker-compose build'
-              sh 'docker-compose up -d' 
+              bat 'docker-compose build'
+              bat 'docker-compose up -d' 
           }
        }
     }
