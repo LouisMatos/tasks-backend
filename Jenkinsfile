@@ -20,7 +20,7 @@ pipeline{
   	       }
           steps {
           	  withSonarQubeEnv('SONAR_LOCAL'){
-          	   bat "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBackend -Dsonar.host.url=http://172.29.32.1:9000 -Dsonar.login=a82acaa41c272496a6011efad6f4c2b7f59fb18f -Dsonar.java.binaries=target -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**,**/model/**,**Application.java"   
+          	   bat "${scannerHome}/bin/sonar-scanner -e -Dsonar.projectKey=DeployBackend -Dsonar.host.url=http://localhost:9000 -Dsonar.login=a82acaa41c272496a6011efad6f4c2b7f59fb18f -Dsonar.java.binaries=target -Dsonar.java.binaries=target -Dsonar.coverage.exclusions=**/.mvn/**,**/src/test/**,**/model/**,**Application.java"   
           	  }
           }
        }
@@ -34,7 +34,7 @@ pipeline{
        }
        stage('Deploy Backend') {
           steps {
-              deploy adapters: [tomcat9(credentialsId: 'Teste-1', path: '', url: 'http://172.29.32.1:8001/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
+              deploy adapters: [tomcat9(credentialsId: 'Teste-1', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks-backend', war: 'target/tasks-backend.war'
           }
        }
        stage('API Test') {
