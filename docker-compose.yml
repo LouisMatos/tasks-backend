@@ -29,6 +29,7 @@ services:
       - DATABASE_PORT=3306
       - DATABASE_USER=luismatos
       - DATABASE_PASSWD=teste123456
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/testedb?autoReconnect=true&useSSL=false
       #- DATABASE_UPDATE=none
     depends_on:
       - db
