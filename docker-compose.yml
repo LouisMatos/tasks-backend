@@ -3,8 +3,6 @@ services:
   db:
     image: mysql:5.7
     container_name: mysql-prod
-#    volumes:
-#      - prod_mysql:/var/lib/mysql
     networks:
       - prod_net_back
     environment:
@@ -57,7 +55,7 @@ services:
 networks:
   prod_net_front:
   prod_net_back:
-    driver: bridge
+
 
 volumes:
   prod_mysql:
