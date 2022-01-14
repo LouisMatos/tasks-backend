@@ -12,6 +12,7 @@ services:
       - MYSQL_DATABASE=testedb
       - MYSQL_USER=luismatos
       - MYSQL_PASSWORD=teste123456
+      - DATABASE_UPDATE=none
 
   backend:
     container_name: backend-prod
