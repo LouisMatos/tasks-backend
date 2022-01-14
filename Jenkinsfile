@@ -50,7 +50,7 @@ pipeline{
           		dir('frontend'){
           		    git 'https://github.com/LouisMatos/tasks-frontend.git'
           		    bat 'mvn clean package -DskipTests=true'
-              		deploy adapters: [tomcat9(credentialsId: 'Teste-1', path: '', url: 'http://172.29.32.1:8001/')], contextPath: 'tasks', war: 'target/tasks.war'
+              		deploy adapters: [tomcat9(credentialsId: 'Teste-1', path: '', url: 'http://localhost:8001/')], contextPath: 'tasks', war: 'target/tasks.war'
           	}
        	  }
     	}
