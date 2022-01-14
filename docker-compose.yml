@@ -32,6 +32,8 @@ services:
       #- DATABASE_UPDATE=none
     depends_on:
       - db
+    links:
+      - db
 
   frontend:
     container_name: frontend-prod
